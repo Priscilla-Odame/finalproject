@@ -13,35 +13,35 @@ import numpy as np
 from torch.utils.data import Dataset, DataLoader
 import datetime
 
-#mnist = tf.keras.datasets.mnist
+mnist = tf.keras.datasets.mnist
 #mobilenet = models.mobilenet_v2(pretrained=True,progress=True)
 
-class HamDataset(Dataset):
+#class HamDataset(Dataset):
 
-    def __init__(self):
+ #   def __init__(self):
         # Initialize data, download, etc.
         # read with numpy or pandas
-        xy = np.loadtxt('C:/Users/BOLD I.T/Desktop/jedyy/pytorch/HAMDataset/hmnist_28_28_RGB.csv', delimiter=',', dtype=np.float32, skiprows=1)
-        self.n_samples = xy.shape[0]
+    #    xy = np.loadtxt('C:/Users/BOLD I.T/Desktop/jedyy/pytorch/HAMDataset/hmnist_28_28_RGB.csv', delimiter=',', dtype=np.float32, skiprows=1)
+   #     self.n_samples = xy.shape[0]
 
         # here the first column is the class label, the rest are the features
-        self.x_data = torch.from_numpy(xy[:, 1:]) # size [n_samples, n_features]
-        self.y_data = torch.from_numpy(xy[:, [0]]) # size [n_samples, 1]
+   #     self.x_data = torch.from_numpy(xy[:, 1:]) # size [n_samples, n_features]
+   #     self.y_data = torch.from_numpy(xy[:, [0]]) # size [n_samples, 1]
 
     # support indexing such that dataset[i] can be used to get i-th sample
-    def __getitem__(self, index):
-        return self.x_data[index], self.y_data[index]
+  #  def __getitem__(self, index):
+  #      return self.x_data[index], self.y_data[index]
 
     # we can call len(dataset) to return the size
-    def __len__(self):
-        return self.n_samples
-dataset=HamDataset()
-train_loader = DataLoader(dataset=dataset,
-                          batch_size=4,
-                          shuffle=True,
-                          num_workers=0)
+  #  def __len__(self):
+  #      return self.n_samples
+#dataset=HamDataset()
+#train_loader = DataLoader(dataset=dataset,
+                  #        batch_size=4,
+             #             shuffle=True,
+             #             num_workers=0)
 
-(x_train, y_train),(x_test, y_test) = DataLoader()
+(x_train, y_train),(x_test, y_test) = mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
 def create_model():
